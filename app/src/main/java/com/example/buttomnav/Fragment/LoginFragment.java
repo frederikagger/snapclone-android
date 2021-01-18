@@ -1,4 +1,4 @@
-package com.example.buttomnav;
+package com.example.buttomnav.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.buttomnav.Activity.MainActivity;
+import com.example.buttomnav.R;
 import com.example.buttomnav.Repository.Repository;
 import com.google.firebase.auth.FirebaseAuth;
 

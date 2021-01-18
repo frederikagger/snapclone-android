@@ -55,7 +55,7 @@ public class CameraFragment extends Fragment {
         textView = (TextView) getView().findViewById(R.id.textview);
         Button cameraButton = (Button) getView().findViewById(R.id.cameraButton);
         Button cameraRollButton = (Button) getView().findViewById(R.id.cameraRollButton);
-        Button sendButton = (Button) getView().findViewById(R.id.send);
+        Button sendButton = (Button) getView().findViewById(R.id.sendButton);
         imageView.setOnClickListener(e -> alertDialog.show());
         cameraButton.setOnClickListener(e -> openCamera());
         cameraRollButton.setOnClickListener(e -> openCameraRoll());
