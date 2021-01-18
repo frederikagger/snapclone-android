@@ -2,10 +2,13 @@ package com.example.buttomnav.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TableLayout;
 
+import com.example.buttomnav.Adapters.LoginAdapter;
 import com.example.buttomnav.Fragment.CameraFragment;
 import com.example.buttomnav.Fragment.LoginFragment;
 import com.example.buttomnav.Fragment.RegisterFragment;
@@ -21,26 +24,16 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, new LoginFragment()).commit();
         TabLayout tabLayout = findViewById(R.id.tablayout);
+        ViewPager viewPager = findViewById(R.id.viewpager);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        tabLayout.setOnTabSelectedListener();
+        final LoginAdapter loginAdapter = new LoginAdapter(getSupportFragmentManager(), 2, 2);
+        viewPager.setAdapter(loginAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        viewPager.setOnClickListener(v -> {
+            System.out.println(v);
 
-        TabLayout.TabLayoutOnPageChangeListener tabLayoutOnPageChangeListener = item -> {
-            Fragment selecetedFragment = null;
-
-            switch (item.getItemId()) {
-                case R.id.camera:
-                    selecetedFragment = new LoginFragment();
-                    break;
-                case R.id.send:
-                    selecetedFragment = new RegisterFragment();
-                    break;
-            }
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.flFragment, selecetedFragment).commit();
-            return true;
-        };
+        });
     }
 
 }

@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
 
 
     public void setArrayToView(ArrayList snaps) {
-        listView = (ListView) this.view.findViewById(R.id.snapListview);
+        listView =  this.view.findViewById(R.id.snapListview);
         arrayAdapter = new ArrayAdapter<>(this.mContext, android.R.layout.simple_list_item_1, snaps);
         listView.setAdapter(arrayAdapter);
     }

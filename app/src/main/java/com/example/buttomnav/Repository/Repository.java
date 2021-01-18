@@ -5,18 +5,22 @@ import android.os.AsyncTask;
 
 
 import com.example.buttomnav.Model.Snap;
+import com.example.buttomnav.Model.User;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Repository {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -69,29 +73,33 @@ public class Repository {
         return null;
     }
 
-    public void saveSnapToFirestore(Snap snap) {
+    public void saveSnap(Snap snap) {
         db.collection("snaps").add(snap);
+    }
+
+    public void createUser(User user) {
+        mAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword());
+    }
+
+    public void saveUser(User user) {
+        db.collection("users").add(user);
+    }
+
+    public void saveUsername(String username) {
+        HashMap<String, String> user = new HashMap<>();
+        user.put("username", username);
+        db.collection("username").add(user);
     }
 
     public CollectionReference getSnapsFromFirestore() {
         return db.collection("snaps");
     }
 
-    private class DownloadImageInBackground extends AsyncTask<String, Void, File> {
+    public CollectionReference getUsersFromFirestore() {
+        return db.collection("users");
+    }
 
-        @Override
-        protected File doInBackground(String... strings) {
-            if (!strings[0].equals("")) {
-                StorageReference pathReference = storageRef.child(strings[0]);
-                try {
-                    File localFile = File.createTempFile("images", "jpg");
-                    pathReference.getFile(localFile);
-                    return localFile;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            return null;
-        }
+    public CollectionReference getUsernameFromFirestore() {
+        return db.collection("username");
     }
 }

@@ -40,9 +40,9 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-      /*  if (mAuth.getCurrentUser() != null){
+        if (mAuth.getCurrentUser() != null){
             changeActivity();
-        }*/
+        }
         email = (EditText) view.findViewById(R.id.email);
         password = (EditText) view.findViewById(R.id.password);
         loginButton = (Button) view.findViewById(R.id.loginButton);
@@ -52,8 +52,6 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override

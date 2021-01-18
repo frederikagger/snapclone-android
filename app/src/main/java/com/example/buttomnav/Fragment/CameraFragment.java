@@ -124,7 +124,7 @@ public class CameraFragment extends Fragment {
         imageView.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
         String path = repository.saveImageToStorage(bitmap);
-        repository.saveSnapToFirestore(new Snap(path, textView.getText().toString()));
+        repository.saveSnap(new Snap(path, textView.getText().toString()));
         imageView.setImageURI(null);
         textView.setText("");
     }
