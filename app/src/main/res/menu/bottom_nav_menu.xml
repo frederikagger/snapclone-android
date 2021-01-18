@@ -10,7 +10,12 @@
         android:icon="@drawable/ic_baseline_camera_alt_24"/>
     <item
         android:id="@+id/send"
-        android:title="Send"
-        android:icon="@drawable/ic_baseline_send_24"/>
+        android:title="Friends"
+        android:icon="@drawable/ic_baseline_people_24"/>
+
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"/>
 
 </menu>

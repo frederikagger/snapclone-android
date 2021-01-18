@@ -5,11 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
-import android.widget.ImageView;
 
 import com.example.buttomnav.Fragment.CameraFragment;
 import com.example.buttomnav.Fragment.HomeFragment;
 import com.example.buttomnav.Fragment.SendFragment;
+import com.example.buttomnav.Fragment.LogoutFragment;
 import com.example.buttomnav.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.home:
                 selecetedFragment = new HomeFragment();
                 break;
+            case R.id.logout:
+                selecetedFragment = new LogoutFragment();
         }
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.flFragment, selecetedFragment).commit();

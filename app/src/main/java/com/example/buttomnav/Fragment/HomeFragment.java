@@ -1,6 +1,7 @@
 package com.example.buttomnav.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.buttomnav.Activity.LoginActivity;
 import com.example.buttomnav.Model.Snap;
 import com.example.buttomnav.R;
 import com.example.buttomnav.Repository.Repository;
@@ -46,12 +48,17 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         repository.getSnapsFromFirestore().addSnapshotListener((value, error) -> {
             snaps.clear();
-            for (DocumentSnapshot snap : value.getDocuments()) {
-                String image = snap.get("pathToImage").toString();
-                String text = snap.get("text").toString();
-                Date created = snap.getDate("created");
-                snaps.add(new Snap(image, text, created));
-            };
+            try{
+                for (DocumentSnapshot snap : value.getDocuments()) {
+                    String image = snap.get("pathToImage").toString();
+                    String text = snap.get("text").toString();
+                    Date created = snap.getDate("created");
+                    snaps.add(new Snap(image, text, created));
+                };
+            } catch (NullPointerException e){
+                e.printStackTrace();
+            }
+
             Collections.sort(snaps);
             setArrayToView(snaps);
             arrayAdapter.notifyDataSetChanged();
