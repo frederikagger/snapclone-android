@@ -24,9 +24,7 @@ import java.util.Map;
 
 public class Repository {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ;
     private final FirebaseStorage storage = FirebaseStorage.getInstance();
-    ;
     private StorageReference storageRef = storage.getReference();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseUser user = mAuth.getCurrentUser();

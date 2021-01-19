@@ -1,6 +1,5 @@
 package com.example.buttomnav.Fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -22,7 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginFragment extends Fragment {
     private View view;
-    private Context mContext;
     private Button loginButton;
     private EditText email;
     private EditText password;
@@ -31,7 +29,6 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         view = inflater.inflate(R.layout.fragment_login, container, false);
         return view;
     }
@@ -47,17 +44,6 @@ public class LoginFragment extends Fragment {
         password = (EditText) view.findViewById(R.id.password);
         loginButton = (Button) view.findViewById(R.id.loginButton);
         loginButton.setOnClickListener(e -> login());
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        this.mContext = context;
     }
 
     public void login() {
@@ -76,13 +62,13 @@ public class LoginFragment extends Fragment {
     }
 
     public void changeActivity() {
-        Intent intent = new Intent(mContext, MainActivity.class);
+        Intent intent = new Intent(getContext(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
     public void makeToast(String text) {
         int duration = Toast.LENGTH_LONG;
-        Toast.makeText(mContext, text, duration).show();
+        Toast.makeText(getContext(), text, duration).show();
     }
 }

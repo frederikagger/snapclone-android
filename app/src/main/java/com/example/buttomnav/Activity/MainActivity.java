@@ -1,6 +1,5 @@
 package com.example.buttomnav.Activity;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -8,7 +7,7 @@ import android.os.Bundle;
 
 import com.example.buttomnav.Fragment.CameraFragment;
 import com.example.buttomnav.Fragment.HomeFragment;
-import com.example.buttomnav.Fragment.SendFragment;
+import com.example.buttomnav.Fragment.FriendFragment;
 import com.example.buttomnav.Fragment.LogoutFragment;
 import com.example.buttomnav.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -31,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.camera:
                 selecetedFragment = new CameraFragment();
                 break;
-            case R.id.send:
-                selecetedFragment = new SendFragment();
+            case R.id.friends:
+                selecetedFragment = new FriendFragment();
                 break;
             case R.id.home:
                 selecetedFragment = new HomeFragment();

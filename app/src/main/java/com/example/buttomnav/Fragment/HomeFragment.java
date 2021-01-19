@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 
 import com.example.buttomnav.Activity.LoginActivity;
 import com.example.buttomnav.Model.Snap;
@@ -39,8 +40,8 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        this.view = inflater.inflate(R.layout.fragment_home, container, false);
-        return this.view;
+        view = inflater.inflate(R.layout.fragment_home, container, false);
+        return view;
     }
 
     @Override
@@ -54,16 +55,15 @@ public class HomeFragment extends Fragment {
                     String text = snap.get("text").toString();
                     Date created = snap.getDate("created");
                     snaps.add(new Snap(image, text, created));
-                };
+                }
             } catch (NullPointerException e){
                 e.printStackTrace();
             }
-
             Collections.sort(snaps);
             setArrayToView(snaps);
             arrayAdapter.notifyDataSetChanged();
-            changeFragmentOnItemClick();
         });
+        changeFragmentOnItemClick();
     }
 
     @Override
@@ -73,10 +73,10 @@ public class HomeFragment extends Fragment {
     }
 
     public void changeFragmentOnItemClick() {
-        this.listView.setOnItemClickListener((parent, view, position, id) -> {
+        listView.setOnItemClickListener((parent, view, position, id) -> {
             Fragment imageFragment = new ImageFragment();
             Bundle args = new Bundle();
-            args.putString("path", this.snaps.get(position).getPathToImage());
+            args.putString("path", snaps.get(position).getPathToImage());
             imageFragment.setArguments(args);
             getFragmentManager().beginTransaction().replace(R.id.flFragment, imageFragment).commit();
         });
@@ -85,7 +85,7 @@ public class HomeFragment extends Fragment {
 
     public void setArrayToView(ArrayList snaps) {
         listView =  this.view.findViewById(R.id.snapListview);
-        arrayAdapter = new ArrayAdapter<>(this.mContext, android.R.layout.simple_list_item_1, snaps);
+        arrayAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, snaps);
         listView.setAdapter(arrayAdapter);
     }
 }

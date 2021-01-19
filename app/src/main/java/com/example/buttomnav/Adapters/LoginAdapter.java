@@ -11,8 +11,8 @@ import com.example.buttomnav.Fragment.RegisterFragment;
 public class LoginAdapter extends FragmentPagerAdapter {
     private int totalTabs;
 
-    public LoginAdapter(@NonNull FragmentManager fm, int behavior, int totalTabs) {
-        super(fm, behavior);
+    public LoginAdapter(@NonNull FragmentManager fm, int totalTabs) {
+        super(fm, totalTabs);
         this.totalTabs = totalTabs;
     }
 

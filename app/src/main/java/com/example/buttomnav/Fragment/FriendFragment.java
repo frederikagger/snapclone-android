@@ -19,7 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class SendFragment extends Fragment {
+public class FriendFragment extends Fragment {
     private ArrayAdapter<String> arrayAdapter;
     private ListView listView;
     private Repository repository = Repository.getInstance();
@@ -30,8 +30,8 @@ public class SendFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        this.view = inflater.inflate(R.layout.fragment_friends, container, false);
-        return this.view;
+        view = inflater.inflate(R.layout.fragment_friends, container, false);
+        return view;
     }
 
     @Override
@@ -39,9 +39,13 @@ public class SendFragment extends Fragment {
         super.onCreate(savedInstanceState);
         repository.getUsernameFromFirestore().addSnapshotListener((value, error) -> {
             usernames.clear();
-            for (DocumentSnapshot document : value.getDocuments()) {
-                String username = document.get("username").toString();
-                usernames.add(username);
+            try {
+                for (DocumentSnapshot document : value.getDocuments()) {
+                    String username = document.get("username").toString();
+                    usernames.add(username);
+                }
+            } catch (NullPointerException e){
+                e.printStackTrace();
             }
             Collections.sort(usernames);
             setArrayToView(usernames);
@@ -50,14 +54,14 @@ public class SendFragment extends Fragment {
     }
 
     public void setArrayToView(ArrayList usernames) {
-        listView = this.view.findViewById(R.id.usernamelist);
-        arrayAdapter = new ArrayAdapter<>(this.mContext, android.R.layout.simple_list_item_1, usernames);
+        listView = view.findViewById(R.id.usernamelist);
+        arrayAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, usernames);
         listView.setAdapter(arrayAdapter);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.mContext = context;
+        mContext = context;
     }
 }

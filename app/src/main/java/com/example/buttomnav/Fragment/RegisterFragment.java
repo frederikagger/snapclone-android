@@ -29,12 +29,12 @@ public class RegisterFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button register = view.findViewById(R.id.RegisterButton);
+        Button registerButton = view.findViewById(R.id.RegisterButton);
         TextView nameTextview = view.findViewById(R.id.name);
         TextView emailTextview = view.findViewById(R.id.email);
         TextView passwordTextview = view.findViewById(R.id.password);
         TextView birthdayTextview = view.findViewById(R.id.birthday);
-        register.setOnClickListener(v -> {
+        registerButton.setOnClickListener(v -> {
             String name = "" + nameTextview.getText();
             String email = "" + emailTextview.getText();
             String password = "" + passwordTextview.getText();
